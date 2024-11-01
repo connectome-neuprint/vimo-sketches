@@ -1051,30 +1051,33 @@ function SketchPanel(props) {
     };
   };
   // Encode the Nodes and Edges For Query
-  useEffect(async () => {
-    let encodedMotif = getEncodedMotif(nodes, edges);
-    context.setMotifQuery(encodedMotif);
+  useEffect(() => {
+    async function encodeNodesAndEdges() {
+      let encodedMotif = getEncodedMotif(nodes, edges);
+      context.setMotifQuery(encodedMotif);
 
-    // most motif queries fail for n larger than 4, develop heuristics to make more accurate
-    nodes.length > 4
-      ? context.setShowWarning(true)
-      : context.setShowWarning(false);
-    if (
-      typeof attributes != "undefined" &&
-      attributes.getMotifCount &&
-      attributes.getRelativeMotifCount
-    ) {
-      const count = await attributes.getMotifCount(
-        JSON.stringify(encodedMotif)
-      );
-      context.setAbsMotifCount(count);
+      // most motif queries fail for n larger than 4, develop heuristics to make more accurate
+      nodes.length > 4
+        ? context.setShowWarning(true)
+        : context.setShowWarning(false);
+      if (
+        typeof attributes != "undefined" &&
+        attributes.getMotifCount &&
+        attributes.getRelativeMotifCount
+      ) {
+        const count = await attributes.getMotifCount(
+          JSON.stringify(encodedMotif)
+        );
+        context.setAbsMotifCount(count);
 
-      // get relative count of motif in network
-      const relative_count = await attributes.getRelativeMotifCount(
-        JSON.stringify(encodedMotif)
-      );
-      context.setRelativeMotifCount(relative_count);
+        // get relative count of motif in network
+        const relative_count = await attributes.getRelativeMotifCount(
+          JSON.stringify(encodedMotif)
+        );
+        context.setRelativeMotifCount(relative_count);
+      }
     }
+    encodeNodesAndEdges();
   }, [nodes, edges]);
 
   const isObject = (obj) => {
