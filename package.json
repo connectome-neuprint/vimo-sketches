@@ -1,5 +1,5 @@
 {
-  "name": "@vimo-public/vimo-sketches",
+  "name": "@neuprint/vimo-sketches",
   "version": "0.2.6",
   "private": false,
   "main": "dist/index.js",
@@ -16,11 +16,13 @@
   "dependencies": {
     "axios": "^0.26.0",
     "paper": "^0.12.15",
-    "react": "^17.0.2",
     "react-awesome-query-builder": "^5.1.2",
-    "react-dom": "^17.0.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
