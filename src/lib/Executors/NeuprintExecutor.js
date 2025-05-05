@@ -28,11 +28,23 @@ export default class NeuprintExecutor {
   }
 
   async getNodeFields() {
-    return await this.fetchData("fetch_node_fields");
+    try {
+      const res = await this.fetchData("fetch_node_fields");
+      return res;
+    } catch (error) {
+      console.error("Error fetching node fields:", error);
+      return {};
+    }
   }
 
   async getEdgeFields() {
-    return await this.fetchData("fetch_edge_fields");
+    try {
+      const res = await this.fetchData("fetch_edge_fields");
+      return res;
+    } catch (error) {
+      console.error("Error fetching edge fields:", error);
+      return {};
+    }
   }
 
   async json2cypher(motifJson, lim) {
@@ -43,14 +55,26 @@ export default class NeuprintExecutor {
   }
 
   getMotifCount = async (motif) => {
-    // get request to backend to get motif count
-    let url = `${this.vimoServer}/count/motif=${motif}`;
-    return (await axios.get(url)).data;
+    try {
+      // get request to backend to get motif count
+      const url = `${this.vimoServer}/count/motif=${motif}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching motif count:", error);
+      return 0;
+    }
   };
 
   getRelativeMotifCount = async (motif) => {
-    // get request to backend to get motif count
-    let url = `${this.vimoServer}/rel_count/motif=${motif}`;
-    return (await axios.get(url)).data;
+    try {
+      // get request to backend to get motif count
+      const url = `${this.vimoServer}/rel_count/motif=${motif}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching relative motif count:", error);
+      return 0;
+    }
   };
 }
