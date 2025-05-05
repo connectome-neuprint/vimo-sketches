@@ -23,8 +23,7 @@ import {
   faFileImport,
   faHand,
 } from "@fortawesome/free-solid-svg-icons";
-import { Utils as QbUtils } from "react-awesome-query-builder";
-import MuiConfig from "react-awesome-query-builder/lib/config/mui";
+import { Utils as QbUtils, MuiConfig } from "@react-awesome-query-builder/mui";
 
 let InitialConfig = MuiConfig;
 delete InitialConfig["conjunctions"]["OR"];

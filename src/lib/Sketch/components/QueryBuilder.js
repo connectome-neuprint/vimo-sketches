@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../contexts/GlobalContext";
-import { Builder, Query, Utils as QbUtils } from "react-awesome-query-builder";
-import MuiConfig from "react-awesome-query-builder/lib/config/mui";
-import "react-awesome-query-builder/lib/css/styles.css";
-import "react-awesome-query-builder/lib/css/compact_styles.css";
+import { Builder, Query, Utils as QbUtils, MuiConfig } from "@react-awesome-query-builder/mui";
+import '@react-awesome-query-builder/ui/css/compact_styles.css';
 import "./QueryBuilder.css";
 
 let InitialConfig = MuiConfig;
